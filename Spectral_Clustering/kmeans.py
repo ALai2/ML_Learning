@@ -15,7 +15,8 @@ from sklearn.cluster import KMeans
 import datasets as dt
 
 # generate data
-data_df = dt.data_frame_make_circles()
+data_df = dt.data_frame_make_circles(n_samples=1000, noise=0.05)
+#data_df = dt.data_frame_make_blobs()
 
 # use k-means to select clusters
 k_means = KMeans(random_state=25, n_clusters=2)

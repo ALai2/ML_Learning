@@ -13,6 +13,7 @@ register_matplotlib_converters()
 from itertools import chain
 from sklearn.datasets import make_moons
 from sklearn.datasets import make_circles
+from sklearn.datasets import make_blobs
 
 # Set random state. 
 rs = np.random.seed(25)
@@ -38,7 +39,7 @@ def generate_concentric_circles_data(param_list):
 
 # return coordinates of concentric circles as dataframe
 def data_frame_concentric_circles(): 
-    n = 1000                # number of points per circle.
+    n = 500                # number of points per circle.
     r_list =[2, 4, 6, 8]    # radius of concentric circles
     sigma = 0.25            # standar deviation (Gaussian noise)
 
@@ -56,8 +57,12 @@ def data_frame_from_moons():
     return pd.DataFrame(data={'x': X.T[0], 'y': X.T[1]})
 
 # return coordinates of two concentric circles as dataframe
-def data_frame_make_circles():
-    X, y = make_circles(n_samples=1000, noise=.05, factor=0.5)
+def data_frame_make_circles(n_samples, noise):
+    X, y = make_circles(n_samples=n_samples, noise=noise, factor=0.5)
+    return pd.DataFrame(data={'x': X.T[0], 'y': X.T[1]})
+
+def data_frame_make_blobs():
+    X, y = make_blobs(n_samples=1000, centers=2, cluster_std=2.5)
     return pd.DataFrame(data={'x': X.T[0], 'y': X.T[1]})
 
 # Plot the input data of dataset
@@ -66,3 +71,5 @@ def plot_input_data(data_df):
     sns.scatterplot(x='x', y='y', color='black', data=data_df, ax=ax)
     ax.set(title='Input Data')
     plt.show()
+
+#plot_input_data(data_frame_concentric_circles())
