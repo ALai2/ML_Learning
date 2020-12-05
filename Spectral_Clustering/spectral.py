@@ -89,7 +89,7 @@ def spectral_clustering(df, n_neighbors, n_clusters, gamma, use_neighbors=True):
 
 # plot the clusters selected by the spectral clustering algorithm
 def plot_spectral_clusters(data_df):
-    data_df['cluster'] = spectral_clustering(df=data_df, n_neighbors=8, n_clusters=2, gamma=150, use_neighbors=True)
+    data_df['cluster'] = spectral_clustering(df=data_df, n_neighbors=8, n_clusters=2, gamma=300, use_neighbors=False)
     fig, ax = plt.subplots()
     sns.scatterplot(x='x', y='y', data=data_df, hue='cluster', ax=ax)
     ax.set(title='Spectral Clustering')
@@ -140,7 +140,7 @@ def plot_time_complexity():
     for i in n:
         data_df = dt.data_frame_make_circles(n_samples=i, noise=0.08)
         begin = time.time()
-        cluster_result = spectral_clustering(df=data_df, n_neighbors=8, n_clusters=2, gamma=450, use_neighbors=False)
+        cluster_result = spectral_clustering(df=data_df, n_neighbors=8, n_clusters=2, gamma=500, use_neighbors=False)
         end = time.time()
         times.append(end-begin)
     
@@ -154,7 +154,7 @@ def plot_time_complexity():
 # generate data
 #data_df = dt.data_frame_concentric_circles()
 #data_df = dt.data_frame_from_moons()
-data_df = dt.data_frame_make_circles(n_samples=1000, noise=0.1)
+data_df = dt.data_frame_make_circles(n_samples=1000, noise=0.12)
 #data_df = dt.data_frame_make_blobs()
 
 # use data
